@@ -1,0 +1,14 @@
+.link {
+    text-decoration: none;
+}
+
+.example-card {
+  max-width: 400px;
+  background-color: rgb(79, 79, 79);
+  color: white;
+}
+
+.subtitle, p {
+    margin-top: 10px;
+    color: white;
+}

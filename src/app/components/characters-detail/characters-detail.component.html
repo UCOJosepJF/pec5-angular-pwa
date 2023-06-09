@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="header">
+    <h1>{{ character.name }}</h1>
+    <button mat-icon-button (click)="goBack()">
+      BACK
+    </button>
+  </div>
+  <img src="{{ character.image }}">
+
+
+  <div class="button-container">
+    <button mat-raised-button (click)="toggleDetails()">
+      {{ showAllDetailsFlag ? 'Hide Details' : 'Show Details' }}
+    </button>
+  </div>
+
+  <mat-tab-group *ngIf="showAllDetailsFlag">
+    <mat-tab label="Status">
+      <div class="property-container">
+        <div class="property-label">Status:</div>
+        <div class="property-value">{{ character.status }}</div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Species">
+      <div class="property-container">
+        <div class="property-label">Species:</div>
+        <div class="property-value">{{ character.species }}</div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Type">
+      <div class="property-container">
+        <div class="property-label">Type:</div>
+        <div class="property-value">{{ character.type }}</div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Gender">
+      <div class="property-container">
+        <div class="property-label">Gender:</div>
+        <div class="property-value">{{ character.gender }}</div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Origin">
+      <div class="property-container">
+        <div class="property-label">Origin:</div>
+        <div class="property-value">{{ character.origin.name }}</div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Location">
+      <div class="property-container">
+        <div class="property-label">Location:</div>
+        <div class="property-value">{{ character.location.name }}</div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Url">
+      <div class="property-container">
+        <div class="property-label">Url:</div>
+        <div class="property-value">{{ character.url }}</div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Created">
+      <div class="property-container">
+        <div class="property-label">Created:</div>
+        <div class="property-value">{{ character.created }}</div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+</div>

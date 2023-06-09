@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="toggle-container">
+    <mat-button-toggle-group [(ngModel)]="viewMode" class="view-mode-toggle">
+      <mat-button-toggle value="list">
+        <mat-icon>format_list_bulleted</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="cards">
+        <mat-icon>view_module</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <!-- Añadimos 2 segundos de delay en la respuesta de la api para ver el spinner -->
+  <ng-container *ngIf="isLoading; else charactersView">
+    <mat-spinner></mat-spinner>
+  </ng-container>  
+
+  <ng-template #charactersView>
+    <ng-container *ngIf="viewMode === 'list'; else cardsView">
+      <table mat-table [dataSource]="characters" class="mat-elevation-z8 demo-table">
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+      
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+        </ng-container>
+      
+        <!-- Species Column -->
+        <ng-container matColumnDef="species">
+          <th mat-header-cell *matHeaderCellDef>Species</th>
+          <td mat-cell *matCellDef="let element">{{ element.species }}</td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="['id', 'name', 'status', 'species']"></tr>
+        <tr
+          mat-row
+          [@listAnimation]
+          (click)="goToDetail(row.id)"
+          [class.demo-row-is-clicked]="lickedRows.has(row)"
+          *matRowDef="let row; columns: ['id', 'name', 'status', 'species'];"
+        ></tr>
+      </table>
+    </ng-container>
+  
+    <ng-template #cardsView>
+      <mat-card>
+        <mat-card-content>
+          <div class="grid-container">
+            <div class="grid-item" *ngFor="let character of characters">
+              <app-characters-card [character]="character"></app-characters-card>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </ng-template>
+  </ng-template>
+
+</div>

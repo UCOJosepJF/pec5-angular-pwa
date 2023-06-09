@@ -1,0 +1,15 @@
+<a class="link" [routerLink]="['/character/', character.id]">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{ character.name}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="{{ character.image}}" [ngStyle]="{'background-image': 'url(' + character.image + ')'}">
+    <mat-card-content>
+      <mat-card-subtitle class="subtitle">{{ character.status}}</mat-card-subtitle>
+      <p>
+        {{ character.species}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</a>
+
